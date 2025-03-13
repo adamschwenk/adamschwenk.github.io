@@ -15,10 +15,13 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18
+          cache: 'npm'
 
-      - name: Install dependencies
-        # Use --legacy-peer-deps to bypass dependency conflicts
-        run: npm install --legacy-peer-deps
+      # Clean install with no package-lock.json
+      - name: Clean install dependencies
+        run: |
+          rm -f package-lock.json
+          npm install --no-package-lock
 
       - name: Build
         run: npm run build
@@ -28,3 +31,4 @@ jobs:
         with:
           folder: out
           branch: gh-pages
+
