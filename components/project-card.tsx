@@ -1,76 +1,81 @@
 "use client"
 
+import { useRef } from "react"
 import Link from "next/link"
-import { ArrowRight } from "lucide-react"
-import { Badge } from "@/components/ui/badge"
-import { motion } from "framer-motion"
+import { ArrowDown, Mail, Linkedin } from 'lucide-react'
+import { Button } from "@/components/ui/button"
+import ProjectCard from "@/components/project-card"
+import ExperienceTimeline from "@/components/experience-timeline"
+import { motion, useScroll, useTransform } from "framer-motion"
+import SkillsSection from "@/components/skills-section"
 
-interface ProjectCardProps {
-  title: string
-  role: string
-  description: string
-  image: string
-  skills: string[]
-  achievements: string[]
-  link: string
-  featured?: boolean
-}
+export default function Home() {
+  const targetRef = useRef<HTMLDivElement>(null)
+  const { scrollYProgress } = useScroll({
+    target: targetRef,
+    offset: ["start start", "end start"],
+  })
 
-export default function ProjectCard({
-  title,
-  role,
-  description,
-  image,
-  skills,
-  achievements,
-  link,
-  featured = false,
-}: ProjectCardProps) {
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "40%"])
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0])
+
   return (
-    <motion.div
-      whileHover={{ y: -5 }}
-      className={`group relative overflow-hidden rounded-2xl bg-zinc-700/30 backdrop-blur-sm border border-zinc-700/50 hover:border-zinc-600 transition-colors`}
-    >
-      <div className="p-6 md:p-8">
-        <div className="mb-4">
-          {featured && (
-            <Badge className="mb-3 bg-white/10 text-white border-0 hover:bg-white/20">Featured Project</Badge>
-          )}
-          <h3 className="text-xl md:text-2xl font-bold mb-2 text-white">{title}</h3>
-          <p className="text-zinc-400 mb-2 font-medium">{role}</p>
-          <p className="text-zinc-300">{description}</p>
-        </div>
+    <main className="relative bg-background">
+      {/* Hero Section with Parallax */}
+      <div ref={targetRef} className="relative h-screen overflow-hidden">
+        <motion.div style={{ y, opacity }} className="absolute inset-0 w-full h-full">
+          <div className="relative h-full">
+            <img
+              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_0014%20%282%29.JPG-edo9ktUL0fofcRWPGutmu7oIP1MNbP.jpeg"
+              alt="Adam Schwenk in front of the Millennium Falcon"
+              className="absolute inset-0 w-full h-full object-cover object-center"
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-zinc-900/70 via-zinc-900/50 to-zinc-900"></div>
+          </div>
+        </motion.div>
 
-        <div className="mb-6">
-          <div className="mb-4">
-            <h4 className="text-sm font-medium mb-2 text-zinc-400">Skills & Deliverables</h4>
-            <div className="flex flex-wrap gap-2">
-              {skills.map((skill, index) => (
-                <Badge key={index} variant="outline" className="bg-zinc-800/50 text-zinc-300 border-zinc-700">
-                  {skill}
-                </Badge>
-              ))}
+        <div className="relative h-full flex flex-col items-center justify-center text-center px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="max-w-4xl mx-auto"
+          >
+            <h1 className="text-6xl md:text-7xl font-bold mb-4 text-white">Adam Schwenk</h1>
+            <h2 className="text-2xl md:text-3xl font-medium mb-6 text-zinc-200">Product Manager</h2>
+            <p className="text-lg md:text-xl mb-8 text-zinc-300 max-w-2xl mx-auto">
+              Data-focused product leader with 10+ years of experience creating and launching consumer-facing mobile
+              applications across startups and Fortune 500 companies.
+            </p>
+            <div className="flex flex-wrap gap-4 justify-center">
+              <Button asChild className="bg-white text-zinc-900 hover:bg-zinc-200 text-lg px-8 py-6">
+                <a
+                  href="/Adam_Schwenk_Resume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Resume
+                </a>
+              </Button>
+              <Button asChild variant="outline" className="border-white text-white hover:bg-white/10 text-lg px-8 py-6">
+                <Link href="#contact">Get in Touch</Link>
+              </Button>
             </div>
-          </div>
-
-          <div>
-            <h4 className="text-sm font-medium mb-2 text-zinc-400">Key Achievements</h4>
-            <ul className="list-disc pl-5 text-sm text-zinc-300 space-y-1">
-              {achievements.map((achievement, index) => (
-                <li key={index}>{achievement}</li>
-              ))}
-            </ul>
-          </div>
+          </motion.div>
         </div>
 
-        <Link href={link} className="inline-flex items-center gap-2 text-white font-medium hover:gap-3 transition-all">
-          View Project Details
-          <ArrowRight size={16} />
-        </Link>
+        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 text-white/70">
+          <Link href="#about" className="flex flex-col items-center hover:text-white transition-colors">
+            <span className="text-sm mb-2">Scroll Down</span>
+            <ArrowDown size={24} className="animate-bounce" />
+          </Link>
+        </div>
       </div>
 
-      <div className="absolute -bottom-1 -right-1 w-32 h-32 bg-white/5 rounded-full blur-3xl opacity-70 group-hover:opacity-100 transition-opacity" />
-    </motion.div>
-  )
-}
-
+      {/* About Section */}
+      <section id="about" className="py-32 px-4 bg-background">
+        <div className="container mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.
