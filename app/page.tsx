@@ -2,7 +2,7 @@
 
 import { useRef } from "react"
 import Link from "next/link"
-import { ArrowDown, Mail, Linkedin } from "lucide-react"
+import { ArrowDown, Mail, Linkedin } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import ProjectCard from "@/components/project-card"
 import ExperienceTimeline from "@/components/experience-timeline"
@@ -50,7 +50,7 @@ export default function Home() {
             <div className="flex flex-wrap gap-4 justify-center">
               <Button asChild className="bg-white text-zinc-900 hover:bg-zinc-200 text-lg px-8 py-6">
                 <a
-                  href={`${process.env.NODE_ENV === "production" ? "/your-repo-name" : ""}/Adam_Schwenk_Resume.pdf`}
+                  href="/Adam_Schwenk_Resume.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -153,7 +153,7 @@ export default function Home() {
                 title="Navy Federal Credit Union AI Initiatives"
                 role="AI Product Manager"
                 description="Led the adoption and implementation of AI-powered tools like Microsoft Copilot and GitHub Copilot to enhance productivity and streamline development workflows within the organization."
-                image={`${process.env.NODE_ENV === "production" ? "/your-repo-name" : ""}/placeholder.svg?height=300&width=500`}
+                image="/placeholder.svg?height=300&width=500"
                 skills={[
                   "Requirements Specification",
                   "User Acceptance Testing",
@@ -173,7 +173,7 @@ export default function Home() {
                 title="Coaching Season"
                 role="Principal Product Manager"
                 description="Led the design, development, and optimization of an online coaching platform connecting individuals with career, leadership, and executive coaches."
-                image={`${process.env.NODE_ENV === "production" ? "/your-repo-name" : ""}/placeholder.svg?height=300&width=500`}
+                image="/placeholder.svg?height=300&width=500"
                 skills={[
                   "Product Management",
                   "Project Management",
@@ -192,7 +192,7 @@ export default function Home() {
                 title="Verizon Messages"
                 role="Principal Product Manager"
                 description="Led feature development for Verizon Messages (Message+), a cross-platform messaging app serving 20M+ users across iOS, Android, and desktop."
-                image={`${process.env.NODE_ENV === "production" ? "/your-repo-name" : ""}/placeholder.svg?height=300&width=500`}
+                image="/placeholder.svg?height=300&width=500"
                 skills={["Product Management", "UX & UI", "Data Analytics", "Project Management", "AI Chatbot"]}
                 achievements={[
                   "Launched patented Reminders Feature",
@@ -205,7 +205,7 @@ export default function Home() {
                 title="Verizon My Numbers"
                 role="Principal Product Manager"
                 description="Led product strategy for a service allowing users to add up to four virtual phone numbers to a single smartphone for separate personal and business use."
-                image={`${process.env.NODE_ENV === "production" ? "/your-repo-name" : ""}/placeholder.svg?height=300&width=500`}
+                image="/placeholder.svg?height=300&width=500"
                 skills={[
                   "Product Strategy",
                   "UX & UI",
@@ -224,7 +224,7 @@ export default function Home() {
                 title="Wells Fargo Greenhouse App"
                 role="Growth Product Manager"
                 description="Led the onboarding and referral program for a mobile-first banking platform designed to help users manage finances through two linked accounts."
-                image={`${process.env.NODE_ENV === "production" ? "/your-repo-name" : ""}/placeholder.svg?height=300&width=500`}
+                image="/placeholder.svg?height=300&width=500"
                 skills={[
                   "Customer Onboarding",
                   "Product Management",
@@ -243,7 +243,7 @@ export default function Home() {
                 title="Capital One Spark Business"
                 role="Senior Product Manager"
                 description="Led 0-1 development and launch of Spark Business, driving mobile strategy, product vision, execution, and analytics."
-                image={`${process.env.NODE_ENV === "production" ? "/your-repo-name" : ""}/placeholder.svg?height=300&width=500`}
+                image="/placeholder.svg?height=300&width=500"
                 skills={["Mobile Strategy", "Analytics", "UX Design", "Product Management", "Agile Leadership"]}
                 achievements={[
                   "Improved deposit success rates by 10%",
@@ -349,4 +349,3 @@ export default function Home() {
     </main>
   )
 }
-
