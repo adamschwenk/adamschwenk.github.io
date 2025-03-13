@@ -15,12 +15,10 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18
-          # Remove the cache option since we don't have a lock file
-          # cache: 'npm'
 
       - name: Install dependencies
-        # Use npm install instead of npm ci since we don't have a lock file
-        run: npm install
+        # Use --legacy-peer-deps to bypass dependency conflicts
+        run: npm install --legacy-peer-deps
 
       - name: Build
         run: npm run build
